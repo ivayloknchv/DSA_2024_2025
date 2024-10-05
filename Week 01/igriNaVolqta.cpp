@@ -23,8 +23,8 @@ int main() {
     int min=nums[k-1]-nums[0];
     for(int i=0;i<n-k + 1;i++)
     {
-        int current=num[i+k-1]+nums[i];
-        if(current<min)
+        int current=nums[i+k-1]-nums[i];
+        if(current<=min)
         {
             min=current;
         }

@@ -1,0 +1,42 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    string str;
+    char ch;
+    
+    cin>>str;
+    cin>>ch;
+    
+    vector<int> pos;
+    
+    for(size_t i=0;i<str.length();i++)
+    {
+        if(str[i]==ch)
+        {
+            pos.push_back(i);
+        }
+    }
+    
+    for(size_t i=0;i<str.length();i++)
+    {
+        int min=str.length();
+        for(int p : pos)
+        {
+            int curr=p-i;
+            curr=std::abs(curr);
+            
+            if(curr<min)
+            {
+                min=curr;
+            }
+        }
+        cout<<min<<' ';
+    }
+    return 0;
+}

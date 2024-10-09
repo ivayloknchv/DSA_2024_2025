@@ -1,6 +1,4 @@
-/*https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/
-description/?fbclid=IwZXh0bgNhZW0CMTEAAR1vHQvmKGVbMH5VKjKnr54_Nhv-fZV8CIAe3aew2-rj5ykLMztxo3dSDCE_aem_ecuxYRWZ8cYwLwt821Vgnw*/
-
+// https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/description/?fbclid=IwZXh0bgNhZW0CMTEAAR1vHQvmKGVbMH5VKjKnr54_Nhv-fZV8CIAe3aew2-rj5ykLMztxo3dSDCE_aem_ecuxYRWZ8cYwLwt821Vgnw
 class Solution 
 {
 public:

@@ -1,0 +1,41 @@
+//https://leetcode.com/problems/jewels-and-stones/description/?fbclid=IwZXh0bgNhZW0CMTEAAR3SN9AhD4-rjbWUJFrszohCxj-tnBVQYb3ZHs7vAIalUpurrw949b1NIgM_aem_TjgNybsvJMudsZwmdB7VFw
+
+class Solution {
+public:
+    int numJewelsInStones(string jewels, string stones) {
+        
+        std::ios_base::sync_with_stdio(false);
+        std::cin.tie(nullptr);
+        
+        bool lowerCase[26]{false};
+        bool upperCase[26]{false};
+
+        for(int i=0;i<jewels.size();i++)
+        {
+            if(jewels[i]>='A' && jewels[i]<='Z')
+            {
+                upperCase[jewels[i]-'A']=true;
+            }
+            else
+            {
+                lowerCase[jewels[i]-'a']=true;
+            }
+        }
+
+        int ans=0;
+
+        for(int i=0;i<stones.size();i++)
+        {
+            if(stones[i]>='a' && stones[i]<='z'&& lowerCase[stones[i]-'a'])
+            {
+                ans++;
+            }
+            else if(stones[i]>='A' && stones[i]<='Z'&&upperCase[stones[i]-'A'])
+            {
+                ans++;
+            }
+        }
+
+        return ans;
+    }
+};

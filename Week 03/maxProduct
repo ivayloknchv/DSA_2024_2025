@@ -1,0 +1,13 @@
+// https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/description/?envType=problem-list-v2&envId=an1rjax7
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+
+        int opt1=(nums[nums.size()-1]-1)*(nums[nums.size()-2]-1);
+        int opt2=(nums[0]-1)*(nums[1]-1);
+
+        return max(opt1, opt2);
+    }
+};

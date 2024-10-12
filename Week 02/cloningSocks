@@ -1,0 +1,47 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// https://www.hackerrank.com/contests/practice-1-sda/challenges/cloning-socks/problem
+
+int T, N, M;
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    cin >> T;
+
+    for (int i = 0; i < T; i++)
+    {
+        cin >> N >> M;
+
+        int original = 1;
+        int copies = 0;
+
+        int newSocks = M - 1;
+        original += newSocks;
+        copies += newSocks;
+
+        while (copies>0 && copies < N)
+        {
+            copies += 2;
+        }
+
+        if (original == M && copies == N)
+        {
+            cout << "yes\n";
+        }
+        else
+        {
+            cout << "no\n";
+        }
+    }
+
+    return 0;
+}
+

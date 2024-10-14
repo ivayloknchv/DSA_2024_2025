@@ -1,0 +1,32 @@
+// https://leetcode.com/problems/maximum-units-on-a-truck/description/?envType=problem-list-v2&envId=an1ryio3
+
+class Solution {
+public:
+
+    static bool compare(vector<int>& lhs, vector<int>& rhs)
+    {
+        return lhs[1]<rhs[1];
+    }
+
+    int maximumUnits(vector<vector<int>>& boxTypes, int truckSize)
+     {
+        sort(boxTypes.begin(), boxTypes.end(), compare);
+
+        int res=0;
+
+        for(int i=boxTypes.size()-1;i>=0;i--)
+        {
+            if(truckSize<=0)
+            {
+                break;
+            }
+
+            int boxes=min(truckSize, boxTypes[i][0]);
+            truckSize-=boxes;
+
+            res+=boxes*boxTypes[i][1];
+        }
+
+        return res;
+    }
+};

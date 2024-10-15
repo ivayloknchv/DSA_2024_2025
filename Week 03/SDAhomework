@@ -1,0 +1,47 @@
+// https://www.hackerrank.com/contests/24-25-1/challenges
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+struct Student
+{
+    string name;
+    int score=0;
+};
+
+bool operator<(const Student& lhs, const Student& rhs)
+{
+    return (lhs.score<rhs.score) ||
+        ( lhs.score==rhs.score && lhs.name.compare(rhs.name) > 0);
+}
+
+int main() 
+{
+    int N=0;
+    cin>>N;
+    
+    vector<Student> vec(N);
+    
+    for(int i = 0; i < N; i++)
+    {
+        cin>>vec[i].name;
+    }
+    
+    for(int i = 0; i < N; i++)
+    {
+        cin>>vec[i].score;
+    }
+    
+    sort(vec.begin(), vec.end());
+    
+    for(int i = N-1; i>=0; i--)
+    {
+        cout<<vec[i].name<<' '<<vec[i].score<<'\n';
+    }
+    return 0;
+}

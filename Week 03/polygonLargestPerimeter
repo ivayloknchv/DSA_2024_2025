@@ -1,0 +1,31 @@
+// https://leetcode.com/problems/minimum-processing-time/description/?envType=problem-list-v2&envId=awdekmvh
+
+class Solution {
+public:
+    long long largestPerimeter(vector<int>& nums) 
+    {
+        sort(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.end());
+
+        long long sum=0;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            sum+=nums[i];
+        }    
+
+        for(int i=0;i<nums.size();i++)
+        {
+            if(sum-nums[i]>nums[i])
+            {
+                return sum;
+            }
+            else
+            {
+                sum-=nums[i];
+            }
+        }
+
+        return -1;
+    }
+};

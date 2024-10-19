@@ -1,0 +1,22 @@
+// https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/description/
+
+class Solution {
+public:
+    int minDifference(vector<int>& nums) 
+    {
+        if(nums.size()<=4)
+        {
+            return 0;
+        }
+
+        sort(nums.begin(), nums.end());
+        
+        int n=nums.size();
+        int min1=nums[n-4]-nums[0];
+        int min2=nums[n-3]-nums[1];
+        int min3=nums[n-2]-nums[2];
+        int min4=nums[n-1]-nums[3];
+
+        return min(min(min(min1,min2),min3),min4);
+    }    
+};

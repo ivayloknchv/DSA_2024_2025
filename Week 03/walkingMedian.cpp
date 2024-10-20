@@ -11,44 +11,36 @@ int N;
 int main()
 {
     cin >> N;
-    vector<int> nums;
+    vector<int> nums(N);
 
-    int temp = 0;
-    cin >> temp;
-
-    nums.push_back(temp);
-    cout << nums[0] << '\n';
-
-    for (int i = 1; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
+        int temp;
+
         cin >> temp;
 
-        int idx = 0;
+        int idx = i - 1;
 
-        for (int j = 0; j < i; j++)
+        while (idx >= 0 && temp < nums[idx])
         {
-            if (temp > nums[j])
-            {
-                idx++;
-            }
+            nums[idx + 1] = nums[idx];
+            idx--;
         }
+        nums[++idx] = temp;
 
-        nums.insert(nums.begin() + idx, temp);
-
-        if (nums.size() % 2 == 1)
+        if ((i+1) % 2 == 1)
         {
-            int idx = (1 + nums.size()) / 2 - 1;
+            int idx = (1 + i+1) / 2 - 1;
 
             cout << nums[idx] << '\n';
         }
 
         else
         {
-            int idx = (1 + nums.size()) / 2 - 1;
+            int idx = (1 + i+1) / 2 - 1;
 
             cout << (nums[idx] + nums[idx + 1]) / 2.00 << '\n';
         }
     }
     return 0;
 }
-

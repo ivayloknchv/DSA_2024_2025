@@ -1,5 +1,3 @@
-// https://leetcode.com/problems/reverse-linked-list/?envType=problem-list-v2&envId=linked-list 
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -29,6 +27,11 @@ public:
 
             prev=curr;
             curr=next;
+
+            if(next)
+            {
+                next= next->next;
+            }
         }
 
         return prev;

@@ -12,92 +12,66 @@
  * };
  *
  */
-SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) 
-{
-    if (!head1 && !head2)
+SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* node1, SinglyLinkedListNode* node2) {
+    if (!node1 && !node2)
     {
         return nullptr;
     }
-    else if (!head1)
+    else if (!node1)
     {
-        return head2;
+        return node2;
     }
-    else if (!head2)
+    else if (!node2)
     {
-        return head1;
+        return node1;
     }
 
     SinglyLinkedListNode* ans = nullptr;
+    SinglyLinkedListNode* prev = nullptr;
     SinglyLinkedListNode* current = nullptr;
-    SinglyLinkedListNode* next = nullptr;
 
-    if (head1->data <= head2->data)
+    while (node1 && node2)
     {
-        ans = new SinglyLinkedListNode(head1->data);
-        ans->next=nullptr;
-        head1 = head1->next;
-    }
-    else
-    {
-        ans = new SinglyLinkedListNode({ head2->data});
-        ans->next=nullptr;
-        head2 = head2->next;
-    }
-
-    current = ans;
-
-    while (head1 && head2)
-    {
-        next = nullptr;
-        if (head1->data <= head2->data)
+        if (node1->data <= node2->data)
         {
-            next = new SinglyLinkedListNode(head1->data);
-            next->next=nullptr;
-            head1 = head1->next;
+            current = new SinglyLinkedListNode(node1->data);
+            node1=node1->next;
         }
         else
         {
-            next = new SinglyLinkedListNode(head2->data);
-            next->next=nullptr;
-            head2 = head2->next;
+            current = new SinglyLinkedListNode(node2->data);
+            node2 = node2->next;
         }
-        current->next = next;
 
-        if (next)
+        if (!ans)
         {
-            current = current->next;
+            ans = current;
+            prev = current;
         }
-        
+        else
+        {
+            prev->next = current;
+            prev = prev->next;
+        }
     }
 
-    while (head1)
+    while (node1)
     {
-        next = new SinglyLinkedListNode(head1->data);
-        next->next=nullptr;
-        head1 = head1->next;
+        current = new SinglyLinkedListNode(node1->data);
+        node1=node1->next;
 
-        current->next = next;
-
-        if (next)
-        {
-            current = current->next;
-        }
-        
+        prev->next = current;
+        prev = prev->next;
     }
 
-    while (head2)
+    while (node2)
     {
-        next = new SinglyLinkedListNode(head2->data);
-        next->next=nullptr;
-        head2 = head2->next;
+        current = new SinglyLinkedListNode(node2->data);
+        node2=node2->next;
 
-        current->next = next;
-
-        if (next)
-        {
-            current = current->next;
-        }
+        prev->next = current;
+        prev = prev->next;
     }
-
     return ans;
+
 }

@@ -2,7 +2,7 @@
 #include <sstream>
 #include <stack>
 
-// https://www.hackerrank.com/contests/sda-2021-2021-test-2-test/challenges/challenge-3113/copy-from/1384732026
+// https://www.hackerrank.com/contests/sda-2021-2021-test-2-test/challenges/challenge-3113/problem
 
 struct Node
 {
@@ -217,6 +217,9 @@ void SinglyLinkedList::group(int start, int end)
     
     begPtr->value=sum;
     begPtr->next=endPtr->next;
-    
+    if(!endPtr->next)
+    {
+        tail=endPtr;
+    }
     size-=(end-start);
 }

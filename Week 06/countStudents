@@ -1,0 +1,49 @@
+// https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/description/
+
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) 
+    {
+        queue<int> st;
+        stack<int> sw;
+
+        for(int i = 0; i < students.size(); i++)
+        {
+            st.push(students[i]);
+        }
+
+        for(int i = students.size()-1; i>=0;i--)
+        {
+            sw.push(sandwiches[i]);
+        }
+
+        while(true)
+        {
+            bool hadLunch=false;
+            int size=st.size();
+
+            for(int i = 0; i<size; i++)
+            {
+                if(st.front()==sw.top())
+                {
+                    st.pop();
+                    sw.pop();
+                    hadLunch=true;
+                }
+                else
+                {
+                    int studentNum=st.front();
+                    st.pop();
+                    st.push(studentNum);
+                }
+            }
+
+            if(!hadLunch)
+            {
+                return st.size();
+            }
+        }
+
+        return -1;
+    }
+};

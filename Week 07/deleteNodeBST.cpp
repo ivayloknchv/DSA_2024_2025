@@ -10,7 +10,7 @@
  * };
  */
 
-// https://github.com/TeogopK/Data_Structures_and_Algorithms_FMI/blob/main/Week_06/Seminar/Solutions/Fundamentals/DeleteNodeInBST/Solution.cpp
+// https://leetcode.com/problems/delete-node-in-a-bst/description/
 
 class Solution {
 public:

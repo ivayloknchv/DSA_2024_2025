@@ -35,29 +35,27 @@ class Solution {
            }
         }
 
-    void leftRightHelper(Node* root, int& l, int& r, bool isLeft)
+    void leftRightHelper(Node* root, int& l, int& r)
     {
         if(!root)
         {
-            if(isLeft)
-            {
-                l--;
-            }
-            else
-            {
-                r--;
-            }
             return;
         }
         
-        leftRightHelper(root->leftNode, ++l, r, true);
-        leftRightHelper(root->rightNode, l, ++r, false);
+        if(root->leftNode)
+        {
+           leftRightHelper(root->leftNode, ++l, r);
+        }
+        if(root->rightNode)
+        {
+           leftRightHelper(root->rightNode, l, ++r);
+        }
     }
 	void leftRight(Node *root) {
         int l =0;
         int r =0;
         
-        leftRightHelper(root, l, r, false);
+        leftRightHelper(root, l, r);
         
         std::cout<<"["<<l<<","<<r<<"]";
     }

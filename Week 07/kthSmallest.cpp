@@ -40,3 +40,42 @@ public:
         return nums[k-1];
     }
 };
+
+
+class Solution 
+{
+public:
+
+    void dfs(TreeNode* root, int k, int& counter, int& value)
+    {
+        if(!root)
+        {
+            return;
+        }
+
+        dfs(root->left, k, counter, value);
+        counter++;
+
+        if(counter==k)
+        {
+            value = root->val;
+            return;
+        }
+
+        dfs(root->right, k, counter, value);
+    }
+    int kthSmallest(TreeNode* root, int k) 
+    {
+        if(!root)
+        {
+            return -1;
+        }
+
+       int counter = 0;
+       int value = 0;
+
+       dfs(root, k,counter, value);
+
+       return value;
+    }
+};

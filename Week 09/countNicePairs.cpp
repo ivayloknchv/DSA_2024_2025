@@ -20,15 +20,19 @@ public:
     {
         const int mod = 1e9+7;
         int ans=0;
-        unordered_map<int, int> m;
+        unordered_map<int, long long> m;
 
         for(int i = 0; i < nums.size(); i++)
         {
             int curr = (nums[i] - rev(nums[i])) % mod;
-            ans+=m[curr];
-            ans%=mod;
             m[curr]++;
             m[curr]%=mod;
+        }
+
+        for (auto& it : m) 
+        {
+            long long count = (it.second * (it.second - 1) / 2) % mod; 
+            ans = (ans + count) % mod; 
         }
 
         return ans;

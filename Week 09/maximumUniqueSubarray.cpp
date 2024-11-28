@@ -4,27 +4,24 @@ class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) 
     {
-        unordered_map<int, int> m;
+        set<int> s;
+        int currSum=0;
         int maxSum=0;
-        int currSum =0;
-        int leftIdx=0;
+        int leftMost=0;
 
         for(int i = 0; i < nums.size(); i++)
         {
-            if(m.find(nums[i])!=m.end())
+            while(s.find(nums[i])!=s.end())
             {
-                int idx = m[nums[i]];
-
-                while(leftIdx<=idx)
-                {
-                    currSum-=nums[leftIdx++];
-                }
+                currSum-=nums[leftMost];
+                s.erase(nums[leftMost++]);
             }
 
-            m[nums[i]]=i;
             currSum+=nums[i];
-            maxSum=max(maxSum, currSum);
-        }    
+            s.insert(nums[i]);
+
+            maxSum=max(currSum, maxSum);
+        }
 
         return maxSum;
     }

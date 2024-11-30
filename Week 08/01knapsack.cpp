@@ -1,10 +1,9 @@
-// https://www.naukri.com/code360/problems/0-1-knapsack_920542?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf
-
-int knapsack(const vector<int>& weights, const vector<int>& values, int target)
+#include <bits/stdc++.h> 
+int knapsack(vector<int> weights, vector<int> values, int n, int target) 
 {
-    vector<vector<int>> dp(values.size() + 1, vector<int>(target + 1, 0));
+	vector<vector<int>> dp(n + 1, vector<int>(target + 1, 0));
 
-    for (int i = 1; i <= weights.size(); i++)
+    for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= target; j++)
         {
@@ -19,5 +18,6 @@ int knapsack(const vector<int>& weights, const vector<int>& values, int target)
         }
     }
 
-    return dp[weights.size()][target];
+	
+    return dp[n][target];
 }

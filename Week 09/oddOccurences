@@ -1,0 +1,36 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+
+// https://www.hackerrank.com/contests/sda-2021-2022-test5-8dec/challenges/challenge-3157/problem
+
+int main() 
+{  
+    unordered_map<int, int> mp;
+    int n=0;
+    cin>>n;
+    
+    for(int i = 0; i < n; i++)
+    {
+        int num=0;
+        cin>>num;
+        mp[num]++;
+    }
+    
+    int sum=0;
+    
+    for(auto& it:mp)
+    {
+        if(it.second%2==1)
+        {
+            sum+=it.first*it.second;
+        }
+    }
+    
+    cout<<sum;
+    return 0;
+}

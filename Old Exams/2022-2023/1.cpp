@@ -3,48 +3,61 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <set>
+#include <unordered_map>
 using namespace std;
 
 
 int main() 
-{   
-    
+{
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
     int n = 0;
     cin>>n;
     
-    vector<int> days(n);
+    vector<int> I;
+    vector<int> B;
     
     for(int i = 0; i < n; i++)
     {
-        cin>>days[i];
+        int num = 0;
+        cin>>num;
+        I.push_back(num);
     }
+    
+    
+    for(int i = 0; i < n; i++)
+    {
+        int num = 0;
+        cin>>num;
+        B.push_back(num);
+    }
+    
+    
+    unordered_map<int, int> stickers;
     
     int counter = 0;
     
-    multiset<int> ms;
-    
     for(int i = 0; i < n; i++)
     {
-        ms.insert(days[i]);
+        stickers[I[i]]++;
         
-        int curr = 0;
-        cin>>curr;
-        
-        auto it = ms.find(curr);
-        
-        if(it!=ms.end())
-        {
-            ms.erase(it);
-        }
-        else
+        if(stickers.find(B[i])==stickers.end())
         {
             counter++;
         }
+        else
+        {
+            stickers[B[i]]--;
+            
+            if(stickers[B[i]] == 0)
+            {
+                stickers.erase(B[i]);
+            }
+        }
     }
+    
     cout<<counter;
+    
     return 0;
 }

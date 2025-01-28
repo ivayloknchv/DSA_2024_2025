@@ -7,48 +7,68 @@
 using namespace std;
 
 
-int main() 
-{   
-    int n = 0, t = 0;
-    cin>>n;
-    
-    vector<pair<pair<int, int>, int>> intervals(n);
-    
-    for(int i = 0; i < n; i++)
+struct Person
+{
+    int arrive = 0;
+    int leave = 0;
+    int idx = 0;
+};
+
+bool operator < (const Person& lhs, const Person& rhs)
+{
+    if(lhs.arrive == rhs.arrive)
     {
-        int beg = 0, end = 0;
-        cin>>beg>>end;
-        intervals[i] = {{beg, end}, i};
+      return lhs.leave < rhs.leave;
     }
     
-    cin>>t;
+    return lhs.arrive < rhs.arrive;
+};
+
+int main() 
+{
+    int N = 0;
+    cin>>N;
     
-    sort(intervals.begin(), intervals.end());
+    vector<Person> v;
+    
+    for(int i = 0; i < N; i++)
+    {
+        int arrive = 0, leave = 0;
+        cin>>arrive>>leave;
+        
+        v.push_back({arrive, leave, i});
+    }
+    
+    int T = 0;
+    cin>>T;
+    
+    sort(v.begin(), v.end());
     
     priority_queue<int, vector<int>, greater<>> seats;
+    
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
     
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < N; i++)
     {
         seats.push(i);
     }
     
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < N; i++)
     {
-        while(!pq.empty() && intervals[i].first.first >= pq.top().first)
+        while(!pq.empty() && v[i].arrive >= pq.top().first)
         {
-            int s = pq.top().second;
+            int seat = pq.top().second;
             pq.pop();
-            seats.push(s);
+            seats.push(seat);
         }
         
-        if(intervals[i].second == t)
+        if(v[i].idx == T)
         {
             cout<<seats.top();
             return 0;
         }
         
-        pq.push({intervals[i].first.second, seats.top()});
+        pq.push({v[i].leave, seats.top()});
         seats.pop();
     }
     
